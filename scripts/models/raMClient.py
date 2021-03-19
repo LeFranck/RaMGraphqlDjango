@@ -43,6 +43,6 @@ class RaMClient():
 		return RaMClient.plural_query_maker(self, schema, page, '{ name: "'+ char +'" }', ["name"])
 
 	def forth_query(self, page):
-		query = "query { episodes{ info{ pages next }"
-		query += " results{ characters{ origin{ id } } } } }"
+		query = "query { episodes (page: "+str(page)+"){ info{ pages next }"
+		query += " results{ id characters{ origin{ id } } } } }"
 		return query

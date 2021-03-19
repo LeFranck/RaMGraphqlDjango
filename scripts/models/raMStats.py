@@ -51,3 +51,33 @@ class RaMStats():
 		total_time = endtime - starttime
 		results.append(total_time)
 		return results
+	
+	def second_round_get_dict_sync(self):
+		pageNum = "1"
+		query = RaMClient.forth_query(RaMClient, pageNum)
+		nextPage = pageNum
+		final_dict = {}
+		while nextPage:
+			query = RaMClient.forth_query(RaMClient, nextPage)
+			page = RaMClient.client.execute(query)
+			nextPage = page['data']['episodes']['info']['next']
+			results = page['data']['episodes']['results']
+			for episode in results:
+				Id = episode['id']
+				characters = episode['characters']
+				origins = RaMStats.duplicate_elimination_by_origin_id(RaMStats, characters)
+				final_dict[Id] = origins
+
+		return final_dict
+	
+	def second_round_output(self, sync):
+		if sync:
+			starttime = time.time()
+			result = {}
+			episode_origins_dict = RaMStats.second_round_get_dict_sync(self)
+			for key in episode_origins_dict:
+				result[key] = [len(episode_origins_dict[key]), episode_origins_dict[key]]
+			endtime = time.time()
+			total_time = endtime - starttime
+			print("total time: " + str(total_time))
+			return result
