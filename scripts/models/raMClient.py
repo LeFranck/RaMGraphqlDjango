@@ -10,7 +10,7 @@ class RaMClient():
 		return self.client.execute(query=query_rick)
 
 	def singular_query_maker(self, schema, id, fields):
-		query = "query{ " + schema + "(id: " + str(id) + "){"
+		query = "query{ " + schema + "(id: " + str(id) + "){ "
 		for f in fields:
 			query += f + " "
 		query += "} }"
@@ -31,3 +31,13 @@ class RaMClient():
 			query += f + " "
 		query += "} } }"
 		return query
+
+	def first_query(self):
+		return RaMClient.plural_query_maker(self, "locations", 1, '{ name: "l" }', ["name"])
+
+	def second_query(self):
+		return RaMClient.plural_query_maker(self, "episodes", 1, '{ name: "e" }', ["name"])
+
+	def third_query(self):
+		return RaMClient.plural_query_maker(self, "characters", 1, '{ name: "c" }', ["name"])
+
