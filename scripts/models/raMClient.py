@@ -15,3 +15,19 @@ class RaMClient():
 			query += f + " "
 		query += "} }"
 		return query
+
+	def plural_query_maker(self, schema, page, _filter, fields):
+		query = "query{ " + schema
+		if page != "" and _filter != "":
+			query += "(page: " + str(page) + ", filter: " + _filter + ")"
+		elif page == "" and _filter != "":
+			query += "(filter: " + _filter + ")"
+		elif page != "" and _filter == "":
+			query += "(page: " + str(page) + ")"
+		else:
+			query += ""
+		query += "{ info { next pages } results { "
+		for f in fields:
+			query += f + " "
+		query += "} } }"
+		return query

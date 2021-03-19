@@ -13,7 +13,7 @@ class SolutionTest(TestCase):
 			{"name": "bcdefgh"},
 			{"name": "cdefghi"},
 		]
-		count = raMStats.RaMStats.char_count(raMStats.RaMStats, example, 'd')
+		count = raMStats.RaMStats.char_count(raMStats.RaMStats, example, 'x')
 		self.assertEquals(0, count)
 
 	def test_char_counter_no_caps(self):
@@ -28,7 +28,6 @@ class SolutionTest(TestCase):
 		count = raMStats.RaMStats.char_count(raMStats.RaMStats, example, 'd')
 		self.assertEquals(3, count)
 
-
 	def test_char_counter_caps(self):
 		"""
 		Function should return the correct amount of chars when there is only CAP
@@ -40,7 +39,6 @@ class SolutionTest(TestCase):
 		]
 		count = raMStats.RaMStats.char_count(raMStats.RaMStats, example, 'd')
 		self.assertEquals(3, count)
-
 
 	def test_char_counter_mixed(self):
 		"""
@@ -54,16 +52,16 @@ class SolutionTest(TestCase):
 		count = raMStats.RaMStats.char_count(raMStats.RaMStats, example, 'd')
 		self.assertEquals(3, count)
 
-	def test_list_duplicate_elimination_by_id_empty_list(self):
+	def test_list_duplicate_elimination_by_origin_id_empty_list(self):
 		"""
 		Function should return empty list
 		"""
 		example = []
-		resultado = raMStats.RaMStats.duplicate_elimination_by_id(raMStats.RaMStats, example)
+		resultado = raMStats.RaMStats.duplicate_elimination_by_origin_id(raMStats.RaMStats, example)
 		self.assertEquals([], resultado)
 		self.assertEquals(0, len(resultado))
 
-	def test_list_duplicate_elimination_by_id_no_duplicates(self):
+	def test_list_duplicate_elimination_by_origin_id_no_duplicates(self):
 		"""
 		Function should return same list
 		"""
@@ -72,11 +70,11 @@ class SolutionTest(TestCase):
 			{"origin": {	"id": "2",	}	},
 			{"origin": {	"id": "3",	}	},
 		]		
-		resultado = raMStats.RaMStats.duplicate_elimination_by_id(raMStats.RaMStats, example)
+		resultado = raMStats.RaMStats.duplicate_elimination_by_origin_id(raMStats.RaMStats, example)
 		self.assertEquals(["1","2","3"], resultado)
 		self.assertEquals(3, len(resultado))
 
-	def test_list_duplicate_elimination_by_id_diferente_duplicates(self):
+	def test_list_duplicate_elimination_by_origin_id_diferente_duplicates(self):
 		"""
 		Function should return list without duplicates
 		"""		
@@ -87,11 +85,11 @@ class SolutionTest(TestCase):
 			{"origin": {	"id": "1",	}	},
 			{"origin": {	"id": "3",	}	},
 		]		
-		resultado = raMStats.RaMStats.duplicate_elimination_by_id(raMStats.RaMStats, example)
+		resultado = raMStats.RaMStats.duplicate_elimination_by_origin_id(raMStats.RaMStats, example)
 		self.assertEquals(["1","2","3"], resultado)
 		self.assertEquals(3, len(resultado))
 
-	def test_list_duplicate_elimination_by_id_same_duplicate_couple_of_time(self):
+	def test_list_duplicate_elimination_by_origin_id_same_duplicate_couple_of_time(self):
 		"""
 		Function should return list without duplicates
 		"""		
@@ -103,10 +101,9 @@ class SolutionTest(TestCase):
 			{"origin": {	"id": "2",	}	},
 			{"origin": {	"id": "3",	}	},
 		]		
-		resultado = raMStats.RaMStats.duplicate_elimination_by_id(raMStats.RaMStats, example)
+		resultado = raMStats.RaMStats.duplicate_elimination_by_origin_id(raMStats.RaMStats, example)
 		self.assertEquals(["1","2","3"], resultado)
 		self.assertEquals(3, len(resultado))
-
 
 	def test_get_time_of_execution(self):
 		"""
@@ -117,5 +114,6 @@ class SolutionTest(TestCase):
 			time.sleep(1)
 		endtime = time.time()
 		t = endtime - starttime
-		self.assertGreaterEqual(3, t)
-		self.assertLessEqual(3.3, t)
+		self.assertGreaterEqual(3.3, t)
+		self.assertLessEqual(3, t)
+
