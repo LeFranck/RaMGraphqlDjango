@@ -27,3 +27,11 @@ class ApiTest(TestCase):
 		result = RaMClient.plural_query_maker(RaMClient, "characters", 1 ,'{ name: "r" }', ["name", "id"])
 		to_test = 'query{ characters(page: 1, filter: { name: "r" }){ info { next pages } results { name id } } }'
 		self.assertEquals(result, to_test)
+
+	def test_query_by_ids_maker(self):
+		"""
+		test the query maker method correctness
+		"""
+		result = RaMClient.query_by_ids_maker(RaMClient, "locations", [1,2,3,4,5] ,["name", "id"])
+		to_test = 'query { locationsByIds(ids: [1, 2, 3, 4, 5]) { name id } }'
+		self.assertEquals(result, to_test)

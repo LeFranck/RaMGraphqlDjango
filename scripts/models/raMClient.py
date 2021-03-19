@@ -32,6 +32,13 @@ class RaMClient():
 		query += "} } }"
 		return query
 
+	def query_by_ids_maker(self, schema, ids, fields):
+		query = "query { "+ schema+"ByIds(ids: " + str(ids) + ") { "
+		for f in fields:
+			query += f + " "
+		query += "} }"
+		return query
+
 	def first_query(self):
 		return RaMClient.plural_query_maker(self, "locations", 1, '{ name: "l" }', ["name"])
 
@@ -41,3 +48,7 @@ class RaMClient():
 	def third_query(self):
 		return RaMClient.plural_query_maker(self, "characters", 1, '{ name: "c" }', ["name"])
 
+	def forth_query(self):
+		query = "query { episodes{ info{ pages next }"
+		query += " results{ characters{ origin{ id } } } } }"
+		return query

@@ -114,6 +114,6 @@ class SolutionTest(TestCase):
 			time.sleep(1)
 		endtime = time.time()
 		t = endtime - starttime
-		self.assertGreaterEqual(3.3, t)
+		self.assertGreaterEqual(3.1, t)
 		self.assertLessEqual(3, t)
 
