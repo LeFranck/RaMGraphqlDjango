@@ -2,7 +2,7 @@ from python_graphql_client import GraphqlClient
 
 # Create your models here.
 class RaMClient():
-	endpoint = "https://rickandmortyapi.com/graphql" 
+	endpoint = "https://rickandmortyapi.com/graphql"
 	client = GraphqlClient(endpoint=endpoint)
 
 	def get_ram_graphql_connection(self):
@@ -39,16 +39,10 @@ class RaMClient():
 		query += "} }"
 		return query
 
-	def first_query(self):
-		return RaMClient.plural_query_maker(self, "locations", 1, '{ name: "l" }', ["name"])
+	def first_question_query_mold(self, page, schema, char):
+		return RaMClient.plural_query_maker(self, schema, page, '{ name: "'+ char +'" }', ["name"])
 
-	def second_query(self):
-		return RaMClient.plural_query_maker(self, "episodes", 1, '{ name: "e" }', ["name"])
-
-	def third_query(self):
-		return RaMClient.plural_query_maker(self, "characters", 1, '{ name: "c" }', ["name"])
-
-	def forth_query(self):
+	def forth_query(self, page):
 		query = "query { episodes{ info{ pages next }"
 		query += " results{ characters{ origin{ id } } } } }"
 		return query
