@@ -1,4 +1,5 @@
 from django.test import TestCase
+from scripts.models import RaMClient
 
 #ram => Rick and Morty
 class ApiTest(TestCase):
@@ -7,4 +8,6 @@ class ApiTest(TestCase):
 		"""
 		test the most basic example of ram graphql
 		"""
-		self.assertEquals(False, True)
+		result = RaMClient.get_ram_graphql_connection(RaMClient)
+		to_test = result['data']['character']['name']
+		self.assertEquals('Rick Sanchez', to_test)
