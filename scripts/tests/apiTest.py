@@ -1,5 +1,6 @@
 from django.test import TestCase
 from scripts.models import RaMClient
+from scripts.models import RaMQuerys
 
 #ram => Rick and Morty
 class ApiTest(TestCase):
@@ -16,7 +17,7 @@ class ApiTest(TestCase):
 		"""
 		test the query maker method correctness
 		"""
-		result = RaMClient.singular_query_maker(RaMClient, "character", 1, ["name", "id"])
+		result = RaMQuerys.singular_query_maker(RaMQuerys, "character", 1, ["name", "id"])
 		to_test = "query{ character(id: 1){ name id } }"
 		self.assertEquals(result, to_test)
 
@@ -24,7 +25,7 @@ class ApiTest(TestCase):
 		"""
 		test the query maker method correctness
 		"""
-		result = RaMClient.plural_query_maker(RaMClient, "characters", 1 ,'{ name: "r" }', ["name", "id"])
+		result = RaMQuerys.plural_query_maker(RaMQuerys, "characters", 1 ,'{ name: "r" }', ["name", "id"])
 		to_test = 'query{ characters(page: 1, filter: { name: "r" }){ info { next pages } results { name id } } }'
 		self.assertEquals(result, to_test)
 
@@ -32,6 +33,6 @@ class ApiTest(TestCase):
 		"""
 		test the query maker method correctness
 		"""
-		result = RaMClient.query_by_ids_maker(RaMClient, "locations", [1,2,3,4,5] ,["name", "id"])
+		result = RaMQuerys.query_by_ids_maker(RaMQuerys, "locations", [1,2,3,4,5] ,["name", "id"])
 		to_test = 'query { locationsByIds(ids: [1, 2, 3, 4, 5]) { name id } }'
 		self.assertEquals(result, to_test)
