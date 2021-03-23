@@ -1,4 +1,4 @@
-# Chipax Rick and Morty coding tes
+# Chipax Rick and Morty coding test
 
 Este repositorio contiene la prueba de codigo de Chipax
 
