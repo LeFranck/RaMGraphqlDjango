@@ -1,5 +1,6 @@
 from django.test import TestCase
 from scripts.models import raMStats
+from scripts.models import raMClient
 import time
 
 class SolutionTest(TestCase):
@@ -117,3 +118,10 @@ class SolutionTest(TestCase):
 		self.assertGreaterEqual(3.1, t)
 		self.assertLessEqual(3, t)
 
+	def test_round_1(self):
+		_, duration = raMClient.RaMClient.run_first_round(raMClient.RaMClient)
+		self.assertGreaterEqual(4, duration)
+
+	def test_round_2(self):
+		_, duration = raMClient.RaMClient.run_second_round(raMClient.RaMClient)
+		self.assertGreaterEqual(4, duration)
