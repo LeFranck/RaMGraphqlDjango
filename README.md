@@ -28,24 +28,31 @@ Ocupe bootstrap para el estilo de esta pagina.
  
 ## Instalación
 
-Git clone (link)
+```
+Git clone https://github.com/LeFranck/RaMGraphqlDjango.git
+```
 
 Añadir archivo .env
 
-Si se tienen todas las librerias es llegar y correr 
+## Ejecución
 
+Si se tienen todas las librerias es llegar y correr 
+```python
   from scripts.models import raMClient
   raMClient.RaMClient.run_first_round(raMClient.RaMClient)
   raMClient.RaMClient.run_second_round(raMClient.RaMClient)
+```
 
 Si esto no funciona, apareceran en consola las librerias faltantes
 
 Las cuales deben ser instaladas con 
-
+```python
 pip install <library>
+```
 
 Para correr los tests y vereficar que toda funciona bien basta correr
-
+```
 Python3 manage.py test /scripts
+```
 
 Falta la coordinación con las vistas debido a una falta de coordinación entre asyncio y el thread de Django
