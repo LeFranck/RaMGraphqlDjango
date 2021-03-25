@@ -31,7 +31,6 @@ django-jquery==3.1.0
 Faker==6.6.2
 flake8==3.9.0
 Flask==1.1.2
--e git+https://github.com/aio-libs/aiohttp-demos.git@b7aafff7f6b3c6705aea947229d95bab0bd0882b#egg=graph&subdirectory=demos/graphql-demo
 graphene==2.1.7
 graphql-core==2.2.1
 graphql-relay==2.0.1

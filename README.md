@@ -49,29 +49,33 @@ pip install -r requirements.txt
 ### MVC
 
 ```python
-  python3 manage.py runserver
+python3 manage.py runserver
 ```
 Ingresar a http://127.0.0.1:8000/scripts/
 
 ### API
 ```python
-  python3 manage.py runserver
+python3 manage.py runserver
 ```
-Llamar a http://127.0.0.1:8000/scripts/round_1/
-Llamar a http://127.0.0.1:8000/scripts/round_2/
-Llamar a http://127.0.0.1:8000/scripts/round_2/api
+
+```
+
+curl http://127.0.0.1:8000/scripts/round_1/
+curl http://127.0.0.1:8000/scripts/round_2/
+curl http://127.0.0.1:8000/scripts/round_2/api
+```
 
 ### Para la terminal 
 ```python
-  from scripts.models import RaMClient
-  round_1 = RaMClient.run_first_round_console(RaMClient)
-  round_2 = RaMClient.run_second_round_console(RaMClient)
-  print(round_1)
-  print(round_2)
+from scripts.models import RaMClient
+round_1 = RaMClient.run_first_round_console(RaMClient)
+round_2 = RaMClient.run_second_round_console(RaMClient)
+print(round_1)
+print(round_2)
 ```
 ### Testing
 
 Para correr los tests y vereficar que toda funciona bien basta correr
 ```
-  python3 manage.py test /scripts
+python3 manage.py test scripts/
 ```
