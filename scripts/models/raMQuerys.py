@@ -52,11 +52,14 @@ class RaMQuerys():
 		"""
 		return RaMQuerys.plural_query_maker(self, schema, page, '{ name: "'+ char +'" }', ["name"])
 
-	def forth_query(self, page):
+	def forth_query(self, page, view):
 		"""
 		Ask for the list of origins_ids of all the characters involved in all the episodes
 		"""
 		query = "query { episodes (page: "+str(page)+"){ info{ pages next }"
-		query += " results{ name id characters{ origin{ id } } } } }"
+		query += " results{ name id characters{ origin{ id "
+		if view:
+			query += "name "
+		query += "} } } } }"
 		return query
 	

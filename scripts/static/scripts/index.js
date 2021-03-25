@@ -27,7 +27,6 @@ $(document).ready(function() {
 			success: function (data) {
 				console.log(data)
 				$('#time_2').text("Esta pregunta tardo " + data["round_2"][1] + " segundos en ser contestada");
-				//$('#answer_4').text(data["round_2"][0]);
 				create_episodes_origin_table(data["round_2"][0]);
 			}
 		});
@@ -43,9 +42,13 @@ $(document).ready(function() {
 
 	function create_episodes_origin_table(data){
 		for (const [key, value] of Object.entries(data)) {
-			//TODO: CAMBIAR KEY POR NOMBRE
-			episode = '<tr><td>'+ key +'</td> <td> Cantidad de origenes distintos: '+ value[0] +'</td></tr>'
-			origins = '<tr><td>'+ value[1]+'</td></tr>'
+			str_aux = "[ ";
+			value[1].forEach(origin => {
+				str_aux += origin + ", ";
+			});
+			str_origin = str_aux.slice(0, -2) + " ]"
+			episode = '<tr><td><code>episode </code>'+ key +'</td> <td> Cantidad de orígenes distintos: </td></tr>'
+			origins = '<tr><td><code>origins </code>'+ str_origin +'<td>'+ value[0] +'</td></td></tr>'
 			$('#second_round_table tbody').append(episode)
 			$('#second_round_table tbody').append(origins)
 		}

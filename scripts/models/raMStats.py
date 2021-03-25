@@ -13,17 +13,23 @@ class RaMStats():
 			cont += i["name"].count(char.lower())
 		return cont
 
-	def duplicate_elimination_by_origin_id(self, original):
+	def duplicate_elimination_by_origin_id(self, original, view):
 		"""
 		Recibes a list of dictionaries that contains the origin of each character of an
 		episode, and returns the same dictionary, but deleting the repetitions of 
 		origins ids for each episode
 		"""
 		ids = []
+		names = []
 		for i in original:
 			if i['origin']['id'] not in ids:
 				ids.append(i['origin']['id'])
-		return ids
+				if view:
+					names.append(i['origin']['name'])
+		if view:
+			return names
+		else:
+			return ids
 
 	def second_round_output(self, ram_dict):
 		"""

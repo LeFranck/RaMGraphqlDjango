@@ -31,7 +31,14 @@ async def round_1(request):
 	return JsonResponse(data)
 
 async def round_2(request):
-	retorno = await RaMClient.run_second_round(RaMClient)
+	retorno = await RaMClient.run_second_round(RaMClient, True)
+	data = {
+		"round_2": retorno,
+	}
+	return JsonResponse(data)
+
+async def round_2_api(request):
+	retorno = await RaMClient.run_second_round(RaMClient, False)
 	data = {
 		"round_2": retorno,
 	}

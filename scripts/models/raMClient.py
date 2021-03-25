@@ -57,7 +57,7 @@ class RaMClient():
 		retorno = await asyncio.gather(*tasks)
 		return retorno
 
-	async def second_round(self):
+	async def second_round(self, view):
 		"""
 		returns a dictionary, with episode_id as key, and as value have a pair of data,
 		the first entry its how many diferent origins have all the characters involved in
@@ -65,12 +65,12 @@ class RaMClient():
 		involved in that episode (without repetition)
 		"""
 		client = GraphqlClient(endpoint=self.endpoint)
-		query = RaMQuerys.forth_query(RaMQuerys, "1")
+		query = RaMQuerys.forth_query(RaMQuerys, "1", view)
 		page = await sync_to_async(client.execute)(query)
 		Pages = page['data']['episodes']['info']['pages']
 		tasks = []
 		for i in range(1, Pages + 1):
-			query_i = RaMQuerys.forth_query(RaMQuerys,i)
+			query_i = RaMQuerys.forth_query(RaMQuerys, i, view)
 			tasks.append(client.execute_async(query_i))
 		aps = await asyncio.gather(*tasks)
 
@@ -78,9 +78,13 @@ class RaMClient():
 		for j in aps:
 			for episode in j['data']['episodes']['results']:
 				characters = episode['characters']
+				Id = episode['id']
 				name = episode['name']
-				origins = RaMStats.duplicate_elimination_by_origin_id(RaMStats, characters)
-				episode_origins_dict[name] = origins
+				origins = RaMStats.duplicate_elimination_by_origin_id(RaMStats, characters, view)
+				if view:
+					episode_origins_dict[name] = origins
+				else:
+					episode_origins_dict[Id] = origins
 
 		return RaMStats.second_round_output(RaMStats, episode_origins_dict)
 	
@@ -93,11 +97,11 @@ class RaMClient():
 		duration = time.time() - starttime
 		return retorno, duration
 
-	async def run_second_round(self):
+	async def run_second_round(self, view):
 		"""
 		Runs second_round and time it
 		"""
 		starttime = time.time()
-		retorno = await RaMClient.second_round(self)
+		retorno = await RaMClient.second_round(self, view)
 		duration = time.time() - starttime
 		return retorno, duration

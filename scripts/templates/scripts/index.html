@@ -10,47 +10,55 @@
 	</head>
 
 	<body>
-		<h1>### Usa la API de Rick and Morty para probar tus habilidades 🥼</h1>
-		<h2>Tienes que consultar los `character`, `locations` y `episodes` de <a href="https://rickandmortyapi.com/">https://rickandmortyapi.com/</a> e indicar:</h2>
+		<h1>Solución usando la API de Rick and Morty para probar mis habilidades 👨‍💻 </h1>
+		<h2>Se consultaron los <code>character</code>, <code>locations</code> y <code>episodes</code> de <a href="https://rickandmortyapi.com/">https://rickandmortyapi.com/</a> logrando obtener:</h2>
 		
 		<table>
-			<tr>
-				<th>Char counter: <button id="round_1">RUN</button></th>
+			<thead>
+				<th><button id="round_1">Round 1 (Char counter)</button></th>
+			</thead>
+			<tbody>
 					<tr>
-						<td>cuánto tardó el programa 👆 en total: </td>
+						<td>¿Cuánto tardó el programa en total (todo el primer Round)? </td>
 						<td id="time_1"></td>
 					</tr>
 					<tr>
-						<td>cuántas veces aparece la letra "l" (case insensitive) en los nombres de todos los Locations: </td>
+						<td>¿Cuántas veces aparece la letra <code>"l"</code> (case insensitive) en los nombres de todos los <code>locations</code>? </td>
 						<td id="answer_1"></td>
 					</tr>
 					<tr>
-						<td>cuántas veces aparece la letra "e" (case insensitive) en los nombres de todos los Episodes: </td>
+						<td>¿Cuántas veces aparece la letra <code>"e"</code> (case insensitive) en los nombres de todos los <code>episodes</code>? </td>
 						<td id="answer_2"></td>
 					</tr>
 					<tr>
-						<td>cuántas veces aparece la letra "c" (case insensitive) en los nombres de todos los Characters: </td>
+						<td>¿Cuántas veces aparece la letra <code>"c"</code> (case insensitive) en los nombres de todos los <code>characters</code>? </td>
 						<td id="answer_3"></td>
 					</tr>
-				</tr>
+				</tbody>
 		</table>
 		<hr>
 		<table>
-			<tr>
-				<th>Episode locations: <button id="round_2">RUN</button></th>
-			</tr>
+			<thead>
 				<tr>
-					<td>cuánto tardó el programa 👆 en total:</td>
+					<th><button id="round_2">Round 2 (Episode origins)</button></th>
+				</tr>
+				<tr>
+					<th>Para cada <code>episode</code>, se indica la cantidad y un listado con los <code>origin</code> de todos los <code>character</code> que aparecieron en ese <code>episode</code> (sin repetir)</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr>
+					<td>¿Cuánto tardó el programa en total (el segundo round)?</td>
 					<td id="time_2"></td>
 				</tr>
-				<tr>
-					<td>para cada `episode`, indicar la cantidad y un listado con las `location` (`origin`) de todos los `character` que aparecieron en ese `episode` (sin repetir)</td>
-				</tr>
+			</tbody>
 		</table>
+		<br>
 		<table id="second_round_table">
 			<thead>
 				<tr>
-					<th>Todos los distintos origenes de los personajes de cada episodio </th>
+					<th>Todos los distintos orígenes de los personajes de cada episodio </th>
 				</tr>
 			</thead>
 			<tbody>
@@ -58,5 +66,4 @@
 			</tbody>
 		</table>
 	</body>
-
 </html>
