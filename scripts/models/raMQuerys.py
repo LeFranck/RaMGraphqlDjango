@@ -57,6 +57,6 @@ class RaMQuerys():
 		Ask for the list of origins_ids of all the characters involved in all the episodes
 		"""
 		query = "query { episodes (page: "+str(page)+"){ info{ pages next }"
-		query += " results{ id characters{ origin{ id } } } } }"
+		query += " results{ name id characters{ origin{ id } } } } }"
 		return query
 	

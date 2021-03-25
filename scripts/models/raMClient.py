@@ -77,10 +77,10 @@ class RaMClient():
 		episode_origins_dict = {}
 		for j in aps:
 			for episode in j['data']['episodes']['results']:
-				Id = episode['id']
 				characters = episode['characters']
+				name = episode['name']
 				origins = RaMStats.duplicate_elimination_by_origin_id(RaMStats, characters)
-				episode_origins_dict[Id] = origins
+				episode_origins_dict[name] = origins
 
 		return RaMStats.second_round_output(RaMStats, episode_origins_dict)
 	

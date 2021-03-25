@@ -1,31 +1,62 @@
 <!DOCTYPE html>
-<head>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-	{% load static %}
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="{% static 'scripts/index.js' %}"></script>
-	<title> Prueba Chipax </title>
-</head>
-<body>
-	<h1>### Usa la API de Rick and Morty para probar tus habilidades 🥼</h1>
-	<h2>Tienes que consultar los `character`, `locations` y `episodes` de <a href="https://rickandmortyapi.com/">https://rickandmortyapi.com/</a> e indicar:</h2>
-	
-	<ol>
-		<li>
-			Char counter: <button id="round_1">RUN</button>
-				<ul>
-					<li>cuántas veces aparece la letra "l" (case insensitive) en los nombres de todos los Locations: </li>
-					<li>cuántas veces aparece la letra "e" (case insensitive) en los nombres de todos los Episodes: </li>
-					<li>cuántas veces aparece la letra "c" (case insensitive) en los nombres de todos los Characters: </li>
-					<li>cuánto tardó el programa 👆 en total: </li>
-				</ul>
-		</li>
-		<li>
-			Episode locations: <button id="round_2">RUN</button>
-			<ul>
-				<li>para cada `episode`, indicar la cantidad y un listado con las `location` (`origin`) de todos los `character` que aparecieron en ese `episode` (sin repetir): </li>
-				<li>cuánto tardó el programa 👆 en total: </li>
-			</ul>
-		</li>
-	</ol>
-</body>
+<html>
+
+	<head>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+		{% load static %}
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="{% static 'scripts/index.js' %}"></script>
+		<title> Prueba Chipax </title>
+	</head>
+
+	<body>
+		<h1>### Usa la API de Rick and Morty para probar tus habilidades 🥼</h1>
+		<h2>Tienes que consultar los `character`, `locations` y `episodes` de <a href="https://rickandmortyapi.com/">https://rickandmortyapi.com/</a> e indicar:</h2>
+		
+		<table>
+			<tr>
+				<th>Char counter: <button id="round_1">RUN</button></th>
+					<tr>
+						<td>cuánto tardó el programa 👆 en total: </td>
+						<td id="time_1"></td>
+					</tr>
+					<tr>
+						<td>cuántas veces aparece la letra "l" (case insensitive) en los nombres de todos los Locations: </td>
+						<td id="answer_1"></td>
+					</tr>
+					<tr>
+						<td>cuántas veces aparece la letra "e" (case insensitive) en los nombres de todos los Episodes: </td>
+						<td id="answer_2"></td>
+					</tr>
+					<tr>
+						<td>cuántas veces aparece la letra "c" (case insensitive) en los nombres de todos los Characters: </td>
+						<td id="answer_3"></td>
+					</tr>
+				</tr>
+		</table>
+		<hr>
+		<table>
+			<tr>
+				<th>Episode locations: <button id="round_2">RUN</button></th>
+			</tr>
+				<tr>
+					<td>cuánto tardó el programa 👆 en total:</td>
+					<td id="time_2"></td>
+				</tr>
+				<tr>
+					<td>para cada `episode`, indicar la cantidad y un listado con las `location` (`origin`) de todos los `character` que aparecieron en ese `episode` (sin repetir)</td>
+				</tr>
+		</table>
+		<table id="second_round_table">
+			<thead>
+				<tr>
+					<th>Todos los distintos origenes de los personajes de cada episodio </th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr></tr>
+			</tbody>
+		</table>
+	</body>
+
+</html>

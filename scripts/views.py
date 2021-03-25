@@ -26,13 +26,13 @@ def index(request):
 async def round_1(request):
 	retorno = await RaMClient.run_first_round(RaMClient)
 	data = {
-		"msg": str(retorno),
+		"round_1": retorno
 	}
 	return JsonResponse(data)
 
 async def round_2(request):
 	retorno = await RaMClient.run_second_round(RaMClient)
 	data = {
-		"msg": retorno,
+		"round_2": retorno,
 	}
 	return JsonResponse(data)
