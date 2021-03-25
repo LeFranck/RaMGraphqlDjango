@@ -35,7 +35,7 @@ Ocupe bootstrap para darle estilo a la solución final.
 ## Instalación
 
 ```
-Git clone https://github.com/LeFranck/RaMGraphqlDjango.git
+git clone https://github.com/LeFranck/RaMGraphqlDjango.git
 ```
 
 Añadir archivo .env
@@ -62,10 +62,14 @@ python3 manage.py runserver
 
 curl http://127.0.0.1:8000/scripts/round_1/
 curl http://127.0.0.1:8000/scripts/round_2/
-curl http://127.0.0.1:8000/scripts/round_2/api
+curl http://127.0.0.1:8000/scripts/round_2/api/
 ```
 
 ### Para la terminal 
+```
+python3
+```
+
 ```python
 from scripts.models import RaMClient
 round_1 = RaMClient.run_first_round_console(RaMClient)
