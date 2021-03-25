@@ -47,14 +47,11 @@ $(document).ready(function() {
 				str_aux += origin + ", ";
 			});
 			str_origin = str_aux.slice(0, -2) + " ]"
-			episode = '<tr><td><code>episode </code>'+ key +'</td> <td> Tiene '+ value[0] +' orígenes distintos</td></tr>'
-			origins = '<tr><td colspan="2"><code>origins </code>'+ str_origin +'</td></tr>'
-			tr = '<tr><td class="col-md-2"><code>episode </code>'+ key +'</td>'
-			tr += '<td class="col-md-2"> Tiene '+ value[0] +' orígenes distintos</td>'
-			tr += '<td class="col-md-8"><code>origins </code>'+ str_origin +'</td></tr>'
+			episode_str = '<tr><td class="col-md-2"><code>episode </code>'+ key +'</td>'
+			num_str = '<td class="col-md-2"> Tiene '+ value[0] +' orígenes distintos</td>'
+			origenes_str = '<td class="col-md-8"><code>origins </code>'+ str_origin +'</td></tr>'
+			tr = episode_str + num_str + origenes_str
 			$('#second_round_table tbody').append(tr)
-			// $('#second_round_table tbody').append(episode)
-			// $('#second_round_table tbody').append(origins)
 		}
 	}
 
