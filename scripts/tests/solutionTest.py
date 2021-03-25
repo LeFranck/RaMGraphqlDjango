@@ -1,6 +1,6 @@
 from django.test import TestCase
-from scripts.models import raMStats
-from scripts.models import raMClient
+from scripts.models import RaMStats
+from scripts.models import RaMClient
 import time
 
 class SolutionTest(TestCase):
@@ -14,7 +14,7 @@ class SolutionTest(TestCase):
 			{"name": "bcdefgh"},
 			{"name": "cdefghi"},
 		]
-		count = raMStats.RaMStats.char_count(raMStats.RaMStats, example, 'x')
+		count = RaMStats.char_count(RaMStats, example, 'x')
 		self.assertEquals(0, count)
 
 	def test_char_counter_no_caps(self):
@@ -26,7 +26,7 @@ class SolutionTest(TestCase):
 			{"name": "bcdefgh"},
 			{"name": "cdefghi"},
 		]
-		count = raMStats.RaMStats.char_count(raMStats.RaMStats, example, 'd')
+		count = RaMStats.char_count(RaMStats, example, 'd')
 		self.assertEquals(3, count)
 
 	def test_char_counter_caps(self):
@@ -38,7 +38,7 @@ class SolutionTest(TestCase):
 			{"name": "BCDEFGH"},
 			{"name": "CDEFGHI"},
 		]
-		count = raMStats.RaMStats.char_count(raMStats.RaMStats, example, 'd')
+		count = RaMStats.char_count(RaMStats, example, 'd')
 		self.assertEquals(3, count)
 
 	def test_char_counter_mixed(self):
@@ -50,7 +50,7 @@ class SolutionTest(TestCase):
 			{"name": "bcdefgh"},
 			{"name": "CDEFGHI"},
 		]
-		count = raMStats.RaMStats.char_count(raMStats.RaMStats, example, 'd')
+		count = RaMStats.char_count(RaMStats, example, 'd')
 		self.assertEquals(3, count)
 
 	def test_list_duplicate_elimination_by_origin_id_empty_list(self):
@@ -58,7 +58,7 @@ class SolutionTest(TestCase):
 		Function should return empty list
 		"""
 		example = []
-		resultado = raMStats.RaMStats.duplicate_elimination_by_origin_id(raMStats.RaMStats, example)
+		resultado = RaMStats.duplicate_elimination_by_origin_id(RaMStats, example, False)
 		self.assertEquals([], resultado)
 		self.assertEquals(0, len(resultado))
 
@@ -71,7 +71,7 @@ class SolutionTest(TestCase):
 			{"origin": {	"id": "2",	}	},
 			{"origin": {	"id": "3",	}	},
 		]		
-		resultado = raMStats.RaMStats.duplicate_elimination_by_origin_id(raMStats.RaMStats, example)
+		resultado = RaMStats.duplicate_elimination_by_origin_id(RaMStats, example, False)
 		self.assertEquals(["1","2","3"], resultado)
 		self.assertEquals(3, len(resultado))
 
@@ -86,7 +86,7 @@ class SolutionTest(TestCase):
 			{"origin": {	"id": "1",	}	},
 			{"origin": {	"id": "3",	}	},
 		]		
-		resultado = raMStats.RaMStats.duplicate_elimination_by_origin_id(raMStats.RaMStats, example)
+		resultado = RaMStats.duplicate_elimination_by_origin_id(RaMStats, example, False)
 		self.assertEquals(["1","2","3"], resultado)
 		self.assertEquals(3, len(resultado))
 
@@ -102,7 +102,7 @@ class SolutionTest(TestCase):
 			{"origin": {	"id": "2",	}	},
 			{"origin": {	"id": "3",	}	},
 		]		
-		resultado = raMStats.RaMStats.duplicate_elimination_by_origin_id(raMStats.RaMStats, example)
+		resultado = RaMStats.duplicate_elimination_by_origin_id(RaMStats, example, False)
 		self.assertEquals(["1","2","3"], resultado)
 		self.assertEquals(3, len(resultado))
 
@@ -119,9 +119,15 @@ class SolutionTest(TestCase):
 		self.assertLessEqual(3, t)
 
 	def test_round_1(self):
-		_, duration = raMClient.RaMClient.run_first_round(raMClient.RaMClient)
+		"""
+		Test how much time round_1 takes to completion (should be less than 4sec)
+		"""
+		_, duration = RaMClient.run_first_round_console(RaMClient)
 		self.assertGreaterEqual(4, duration)
 
 	def test_round_2(self):
-		_, duration = raMClient.RaMClient.run_second_round(raMClient.RaMClient)
+		"""
+		Test how much time round_2 takes to completion (should be less than 4sec)
+		"""
+		_, duration = RaMClient.run_second_round_console(RaMClient)
 		self.assertGreaterEqual(4, duration)

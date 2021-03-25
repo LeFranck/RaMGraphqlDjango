@@ -43,3 +43,21 @@ async def round_2_api(request):
 		"round_2": retorno,
 	}
 	return JsonResponse(data)
+
+async def char_query_api(request):
+	schema = request.GET.get("schema")
+	char = request.GET.get("char")
+	if not schema:
+		raise Http404("Did not get a char")	
+	if not char:
+		raise Http404("Did not get a char")	
+	if char == "":
+		raise Http404("Did not get a char")	
+	if schema == "locations" or schema == "characters" or schema == "episodes":
+		retorno = await RaMClient.char_query_api(RaMClient, schema, char[0])
+		data = {
+			"char_query": retorno
+		}
+		return JsonResponse(data)
+	else:
+		raise Http404("Did not get a corret schema")

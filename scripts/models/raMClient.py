@@ -28,19 +28,21 @@ class RaMClient():
 		cont_total = 0
 		query = RaMQuerys.first_question_query_mold(RaMQuerys, page, schema, char)
 		page = await sync_to_async(client.execute)(query)
-		nextPage = page['data'][schema]['info']['next']
-		pages = page['data'][schema]['info']['pages']
-		to_count = page['data'][schema]['results']
-		cont_total += RaMStats.char_count(RaMStats, to_count, char)
+		if page['data'][schema]:
+			nextPage = page['data'][schema]['info']['next']
+			pages = page['data'][schema]['info']['pages']
+			to_count = page['data'][schema]['results']
+			cont_total += RaMStats.char_count(RaMStats, to_count, char)
 
-		tasks = []
-		for i in range(nextPage, pages + 1):
-			query_i = RaMQuerys.first_question_query_mold(RaMQuerys, i , schema, char)
-			tasks.append(client.execute_async(query_i))
-		tasks_results = await asyncio.gather(*tasks)
+			tasks = []
+			if nextPage:
+				for i in range(nextPage, pages + 1):
+					query_i = RaMQuerys.first_question_query_mold(RaMQuerys, i , schema, char)
+					tasks.append(client.execute_async(query_i))
+				tasks_results = await asyncio.gather(*tasks)
 
-		for j in tasks_results:
-			cont_total += RaMStats.char_count(RaMStats, j['data'][schema]['results'], char)
+				for j in tasks_results:
+					cont_total += RaMStats.char_count(RaMStats, j['data'][schema]['results'], char)
 		return cont_total
 
 	async def first_round(self):
@@ -90,7 +92,7 @@ class RaMClient():
 	
 	async def run_first_round(self):
 		"""
-		Runs first_round and time it
+		Runs first_round and time it, for the index view
 		"""
 		starttime = time.time()
 		retorno = await RaMClient.first_round(self)
@@ -99,9 +101,40 @@ class RaMClient():
 
 	async def run_second_round(self, view):
 		"""
-		Runs second_round and time it
+		Runs second_round and time it, for the index view
 		"""
 		starttime = time.time()
 		retorno = await RaMClient.second_round(self, view)
+		duration = time.time() - starttime
+		return retorno, duration
+
+	def run_first_round_console(self):
+		"""
+		Runs first_round and time it, for the terminal
+		"""
+		starttime = time.time()
+		loop = asyncio.get_event_loop()
+		retorno = loop.run_until_complete(RaMClient.run_first_round(self))
+		duration = time.time() - starttime
+		return retorno, duration
+
+	def run_second_round_console(self):
+		"""
+		Runs first_round and time it, for the terminal
+		"""
+		starttime = time.time()
+		loop = asyncio.get_event_loop()
+		retorno = loop.run_until_complete(RaMClient.run_second_round(self, False))
+		duration = time.time() - starttime
+		return retorno, duration
+
+	async def char_query_api(self, schema, char):
+		"""
+		returns how many 'char' are on 'schema' on RaM API, and the time it took to get 
+		that answer
+		"""
+		starttime = time.time()
+		client = GraphqlClient(endpoint=self.endpoint)
+		retorno = await RaMClient.char_query(self, schema, char, client)
 		duration = time.time() - starttime
 		return retorno, duration
