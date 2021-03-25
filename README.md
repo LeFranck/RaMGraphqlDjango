@@ -30,6 +30,7 @@ Deje la segunda respuesta (en formato api, con los id de los capítulos y origin
 Ambas respuestas pueden ser consumida como API ocupando scripts/round_1/ y scripts/round_2/ respectivamente.
 
 Ocupe bootstrap para darle estilo a la solución final.  
+
  
 ## Instalación
 
