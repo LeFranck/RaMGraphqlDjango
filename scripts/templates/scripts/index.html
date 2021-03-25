@@ -6,64 +6,79 @@
 		{% load static %}
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<script src="{% static 'scripts/index.js' %}"></script>
+		<link rel="stylesheet" type="text/css" href="{% static 'scripts/index.css' %}">
 		<title> Prueba Chipax </title>
 	</head>
 
 	<body>
-		<h1>Solución usando la API de Rick and Morty para probar mis habilidades 👨‍💻 </h1>
-		<h2>Se consultaron los <code>character</code>, <code>locations</code> y <code>episodes</code> de <a href="https://rickandmortyapi.com/">https://rickandmortyapi.com/</a> logrando obtener:</h2>
-		
-		<table>
-			<thead>
-				<th><button id="round_1">Round 1 (Char counter)</button></th>
-			</thead>
-			<tbody>
-					<tr>
-						<td>¿Cuánto tardó el programa en total (todo el primer Round)? </td>
-						<td id="time_1"></td>
-					</tr>
-					<tr>
-						<td>¿Cuántas veces aparece la letra <code>"l"</code> (case insensitive) en los nombres de todos los <code>locations</code>? </td>
-						<td id="answer_1"></td>
-					</tr>
-					<tr>
-						<td>¿Cuántas veces aparece la letra <code>"e"</code> (case insensitive) en los nombres de todos los <code>episodes</code>? </td>
-						<td id="answer_2"></td>
-					</tr>
-					<tr>
-						<td>¿Cuántas veces aparece la letra <code>"c"</code> (case insensitive) en los nombres de todos los <code>characters</code>? </td>
-						<td id="answer_3"></td>
-					</tr>
-				</tbody>
-		</table>
-		<hr>
-		<table>
-			<thead>
-				<tr>
-					<th><button id="round_2">Round 2 (Episode origins)</button></th>
-				</tr>
-				<tr>
-					<th>Para cada <code>episode</code>, se indica la cantidad y un listado con los <code>origin</code> de todos los <code>character</code> que aparecieron en ese <code>episode</code> (sin repetir)</th>
-				</tr>
-			</thead>
-			
-			<tbody>
-				<tr>
-					<td>¿Cuánto tardó el programa en total (el segundo round)?</td>
-					<td id="time_2"></td>
-				</tr>
-			</tbody>
-		</table>
 		<br>
-		<table id="second_round_table">
-			<thead>
-				<tr>
-					<th>Todos los distintos orígenes de los personajes de cada episodio </th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr></tr>
-			</tbody>
-		</table>
+		<br>
+		<div class="title">
+			<h1>Solución usando la API de Rick and Morty para probar mis habilidades 👨‍💻 </h1>
+			<h2>Se consultaron los <code>character</code>, <code>locations</code> y <code>episodes</code> de <a href="https://rickandmortyapi.com/">https://rickandmortyapi.com/</a> logrando obtener:</h2>
+		</div>
+
+		<br>
+		<br>
+
+		<div class="container">
+			<div class="round_1">
+				<button id="round_1">Round 1 (Char counter)</button>
+				<table class="table table-hover table-bordered">
+					<thead>
+						<th class="t1_header">Preguntas</th><th class="t1_header">Respuestas</th>
+					</thead>
+					<tbody>
+							<tr>
+								<td class="col-md-8">¿Cuánto tardó el programa en total (todo el primer Round)? </td>
+								<td class="col-md-4" id="time_1"></td>
+							</tr>
+							<tr>
+								<td class="col-md-8">¿Cuántas veces aparece la letra <code>"l"</code> (case insensitive) en los nombres de todos los <code>locations</code>? </td>
+								<td class="col-md-4" id="answer_1"></td>
+							</tr>
+							<tr>
+								<td class="col-md-8">¿Cuántas veces aparece la letra <code>"e"</code> (case insensitive) en los nombres de todos los <code>episodes</code>? </td>
+								<td class="col-md-4" id="answer_2"></td>
+							</tr>
+							<tr>
+								<td class="col-md-8">¿Cuántas veces aparece la letra <code>"c"</code> (case insensitive) en los nombres de todos los <code>characters</code>? </td>
+								<td class="col-md-4" id="answer_3"></td>
+							</tr>
+						</tbody>
+				</table>
+			</div>
+
+			<br>
+			<br>
+
+			<div class="round_2">
+				<button id="round_2">Round 2 (Episode origins)</button>
+				<table class="table table-hover ">
+					<thead>
+						<tr>
+							<th colspan="2">Para cada <code>episode</code>, se indica la cantidad y un listado con los <code>origin</code> de todos los <code>character</code> que aparecieron en ese <code>episode</code> (sin repetir)</th>
+						</tr>
+						<tr>
+							<th>¿Cuánto tardó el programa en total (el segundo round)?</th>
+							<th id="time_2"></th>
+						</tr>
+					</thead>					
+				</table>
+				<br>
+				<table class="table table-hover table-bordered" id="second_round_table">
+					<thead>
+						<tr>
+							<th class="center_text col-md-2" >Episodio</th>
+							<th class="center_text col-md-2"># Orígenes distintos</th>
+							<th class="center_text col-md-8">Orígenes</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr></tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
 	</body>
 </html>
